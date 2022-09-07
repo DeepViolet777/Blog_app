@@ -1,6 +1,6 @@
 <template>
-<div class="app">
-    <post-form @createPost="createPost" />
+<div class="app light-blue lighten-5">
+    <post-form @create="createPost" />
     <post-list :posts="posts" />
 
 </div>
@@ -43,7 +43,9 @@ export default {
         }
     },
     methods: {
-
+        createPost(post) {
+            this.posts.unshift(post);
+        }
     }
 }
 </script>
@@ -67,7 +69,7 @@ body {
 }
 
 .app {
-    padding: 20px;
-    margin-top: 10%;
+    padding: 3%;
+
 }
 </style>

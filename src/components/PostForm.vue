@@ -2,9 +2,10 @@
 <div>
     <form class="form" @submit.prevent>
         <h4>Создать пост</h4>
-        <input type="text" class="input" placeholder="Заголовок" v-model="post.title">
-        <input type="text" class="input" placeholder="Текст поста" v-model="post.body">
-        <button type="submit" class="btn waves-effect waves-light" @click="createPost">Отправить</button>
+        <input type="text" class="input validate" placeholder="Заголовок"  v-model="post.title">
+        <input type="text" class="input validate" placeholder="Текст поста"  v-model="post.body">
+        <!-- <input type="file" name="" id="" @change="checkFile($event)" > -->
+        <button type="submit" class="waves-effect waves-light light-blue darken-4 btn" @click="createPost">Отправить</button>
     </form>
 </div>
 </template>
@@ -23,7 +24,7 @@ export default {
     methods: {
         createPost() {
             this.post.id = Date.now();
-            this.$emit('createPost', this.post);
+            this.$emit('create', this.post);
             this.post = {
                 title: "",
                 body: "",
@@ -43,6 +44,7 @@ export default {
     margin-left: 35%;
     border: 2px solid #01579b;//#096683;
     border-radius: 5px;
+    background-color: #fff;
 }
 
 .input {

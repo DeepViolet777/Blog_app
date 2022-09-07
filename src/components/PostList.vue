@@ -1,41 +1,35 @@
 <template>
 <div>
-    <div class="post" v-for="post in posts" :key="post.id">
-        <h4 class="post-title">
-            {{post.title}}
-        </h4>
-        <p class="post-body">
-            {{post.body}}
-        </p>
-    </div>
+    <h3>Последние записи:</h3>
+    <post-item 
+    :post="post"
+    v-for="post in posts" :key="post.id"
+     />
+
 </div>
 </template>
 
 <script>
+import PostItem from "@/components/PostItem";
 export default {
+    components: {
+        PostItem
+    },
     props: {
         posts: {
             type: Array,
             required: true,
         }
     }
+
 }
 </script>
 
 <style lang="scss" scoped>
-.post {
-    text-align: left;
+h3{ 
     display: block;
-    padding: 15px;
-    border: 2px solid #01579b;//#096683; 
-    border-radius: 5px;
-    width: 30%;
-    height: 10%;
-    margin: 20px auto;
-
-    &-body {
-        margin-top: 15px;
-    }
-
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 </style>
