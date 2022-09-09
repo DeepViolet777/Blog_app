@@ -1,7 +1,7 @@
 <template>
 <div class="app light-blue lighten-5">
     <post-form @create="createPost" />
-    <post-list :posts="posts" />
+    <post-list :posts="posts" @delete="deletePost" />
 
 </div>
 </template>
@@ -45,6 +45,9 @@ export default {
     methods: {
         createPost(post) {
             this.posts.unshift(post);
+        },
+        deletePost(post) {
+            this.posts = this.posts.filter(p => p.id !== post.id);
         }
     }
 }
@@ -70,6 +73,7 @@ body {
 
 .app {
     padding: 3%;
-
+    width: 100%;
+    min-height: 100vh;
 }
 </style>
