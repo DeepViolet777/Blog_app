@@ -1,4 +1,4 @@
-# Blog_post
+# Blog_app
 
 ## Project setup
 ```

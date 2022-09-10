@@ -38,7 +38,7 @@ export default {
     border: 2px solid #01579b; //#096683; 
     border-radius: 5px;
     width: 30%;
-    height: 10%;
+   // height: 10%;
     margin: 20px auto;
     background-color: #fff;
     display: flex;
@@ -49,5 +49,9 @@ export default {
         margin-top: 15px;
     }
 
+    @media screen and (max-width: 575px) {
+        width: 90%;
+       // height: 10%;
+    }
 }
 </style>

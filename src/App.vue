@@ -75,5 +75,9 @@ body {
     padding: 3%;
     width: 100%;
     min-height: 100vh;
+
+    @media screen and (max-width: 575px) {
+
+    }
 }
 </style>

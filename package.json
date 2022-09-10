@@ -1,5 +1,5 @@
 {
-  "homepage": "https://github.com/DeepViolet777/Blog_post",
+  "homepage": "https://github.com/DeepViolet777/Blog_app",
   "name": "todo_list",
   "version": "0.1.0",
   "private": true,
@@ -10,6 +10,8 @@
     "deploy": "node ./node_modules/vue-gh-pages/index.js"
   },
   "dependencies": {
+    "@vuelidate/core": "^2.0.0-alpha.44",
+    "@vuelidate/validators": "^2.0.0-alpha.31",
     "core-js": "^3.8.3",
     "materialize-css": "^1.0.0-rc.2",
     "vue": "^3.2.13",
