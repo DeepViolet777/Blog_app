@@ -129,7 +129,7 @@ export default {
         display: flex;
         justify-content: space-between;
         font-size: 11px;
-        line-height: 2rem;
+        line-height: 3rem;
         font-weight: 600;
         vertical-align: middle;
         padding-left: 5px;
