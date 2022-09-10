@@ -25,7 +25,9 @@
 
 <script>
 import useVuelidate from '@vuelidate/core'
-import {required} from '@vuelidate/validators';
+import {
+    required
+} from '@vuelidate/validators';
 export default {
     //   mixins: [validationMixin],
     setup() {
@@ -69,7 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 .form {
-    width: 40%;
+    width: 600px;
     display: flex;
     flex-direction: column;
     padding: 10px 15px;
@@ -79,7 +81,7 @@ export default {
     background-color: #fff;
 
     @media screen and (max-width: 1199px) {
-        width: 65%;
+        width: 600px;
         margin: 0 auto;
     }
 
@@ -88,7 +90,6 @@ export default {
         margin: 0 auto;
     }
 }
-
 
 .input {
     width: 100%;
@@ -128,7 +129,7 @@ export default {
         display: flex;
         justify-content: space-between;
         font-size: 11px;
-        line-height: 12px;
+        line-height: 2rem;
         font-weight: 600;
         vertical-align: middle;
         padding-left: 5px;
@@ -141,17 +142,13 @@ export default {
     }
 }
 
-.file-field span {
-
-    // font-size: 12px;
-
-    //height: 2rem;
-
+.file-field .btn {
+    height: 3rem;
 }
 
-.file-field input[type=file] {
+// .file-field input[type=file] {
     //   font-size: 12px;
-    font-weight: 500;
-    height: 2rem;
-}
+   // font-weight: 500;
+ //   height: 2rem;
+//}
 </style>
