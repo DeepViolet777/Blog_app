@@ -69,20 +69,26 @@ export default {
 
 <style lang="scss" scoped>
 .form {
-    width: 30%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     padding: 10px 15px;
-    margin-left: 35%;
+    margin: 20px auto;
     border: 2px solid #01579b; //#096683;
     border-radius: 5px;
     background-color: #fff;
 
-    @media screen and (max-width: 575px) {
+    @media screen and (max-width: 1199px) {
+        width: 65%;
+        margin: 0 auto;
+    }
+
+    @media screen and (max-width: 767px) {
         width: 90%;
         margin: 0 auto;
     }
 }
+
 
 .input {
     width: 100%;

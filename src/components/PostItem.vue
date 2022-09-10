@@ -37,7 +37,7 @@ export default {
     padding: 15px;
     border: 2px solid #01579b; //#096683; 
     border-radius: 5px;
-    width: 30%;
+    width: 40%;
    // height: 10%;
     margin: 20px auto;
     background-color: #fff;
@@ -49,9 +49,14 @@ export default {
         margin-top: 15px;
     }
 
-    @media screen and (max-width: 575px) {
+    @media screen and (max-width: 1199px) {
+        width: 65%;
+        margin: 30px auto;
+    }
+
+    @media screen and (max-width: 767px) {
         width: 90%;
-       // height: 10%;
+        margin: 30px auto;
     }
 }
 </style>
