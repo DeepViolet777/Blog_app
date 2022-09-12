@@ -2,9 +2,13 @@
 <div class="form-container">
     <form class="form" @submit.prevent>
         <h4>Создать пост</h4>
-        <input type="text" class="input validate" placeholder="Заголовок" v-model="post.title" required />
+        <input type="text" class="input" placeholder="Заголовок" v-model="post.title" @blur="v$.post.title.$touch" />
+        <!-- :class="{invalid:($v.post.title.$dirty && !$v.post.title.required)}"/> -->
+        <!-- @blur="v$.post.title.$touch" -->
+        <span v-if="v$.post.title.$error" style="color:red">Введите текст</span>
         <!-- <span class="helper-text" data-error="Введите текст"></span> -->
-        <input type="text" class="input input-textarea validate" placeholder="Текст поста" v-model="post.body" required />
+        <input type="text" class="input input-textarea materialize-textarea " placeholder="Текст поста"  v-model="post.body" @blur="v$.post.body.$touch" />
+        <span v-if="v$.post.body.$error" style="color:red">Введите текст</span>
         <!-- <span class="helper-text" data-error="Введите текст"></span> -->
         <!-- <textarea class="input input-textarea validate" placeholder="Текст поста" v-model="post.body" required /> -->
         <!-- <input type="file" name="" id="" @change="checkFile($event)" > -->
@@ -18,7 +22,7 @@
                 <input class="file-path validate" type="text">
             </div>
         </div>
-        <button type="submit" class="waves-effect waves-light light-blue darken-4 btn" @click="createPost">Отправить</button>
+        <button  type="submit" class="waves-effect waves-light light-blue darken-4 btn" :disabled="v$.$invalid" @click="createPost">Отправить</button>
     </form>
 </div>
 </template>
@@ -51,8 +55,10 @@ export default {
             this.$emit('create', this.post);
             this.post = {
                 title: "",
-                body: "",
+                body: ""
             }
+            this.v$.$reset();
+            
         }
 
     },
@@ -65,7 +71,14 @@ export default {
                 required
             },
         }
-    }
+    },
+    // computed: {
+    //     nameErrors() {
+    //         const errors = [];
+    //         if (this.$v.post.title.required)
+    //         return 
+    //     }
+    // }
 }
 </script>
 
@@ -102,6 +115,11 @@ export default {
         height: 120px;
     }
 }
+
+//input[type=text].invalid {
+//  border-bottom: 1px solid #000;
+//  box-shadow: 0 1px 0 0 #000;
+// } 
 
 .btn {
     //width: 100px;
@@ -146,9 +164,14 @@ export default {
     height: 3rem;
 }
 
+//.materialize-textarea.invalid {
+ //   border: 2px solid #F44336;
+ //   box-shadow: 0 1px 0 0 #f44336;
+//}
+
 // .file-field input[type=file] {
-    //   font-size: 12px;
-   // font-weight: 500;
- //   height: 2rem;
+//   font-size: 12px;
+// font-weight: 500;
+//   height: 2rem;
 //}
 </style>
