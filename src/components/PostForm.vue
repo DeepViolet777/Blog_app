@@ -2,12 +2,12 @@
 <div class="form-container">
     <form class="form" @submit.prevent>
         <h4>Создать пост</h4>
-        <input type="text" class="input" placeholder="Заголовок" v-model="post.title" @blur="v$.post.title.$touch" />
+        <input type="text" class="input input-text validate" required placeholder="Заголовок" v-model="post.title" @blur="v$.post.title.$touch" />
         <!-- :class="{invalid:($v.post.title.$dirty && !$v.post.title.required)}"/> -->
         <!-- @blur="v$.post.title.$touch" -->
         <span v-if="v$.post.title.$error" style="color:red">Введите текст</span>
         <!-- <span class="helper-text" data-error="Введите текст"></span> -->
-        <input type="text" class="input input-textarea materialize-textarea " placeholder="Текст поста"  v-model="post.body" @blur="v$.post.body.$touch" />
+        <input type="text" class="input input-text materialize-textarea validate" required placeholder="Текст поста" v-model="post.body" @blur="v$.post.body.$touch" />
         <span v-if="v$.post.body.$error" style="color:red">Введите текст</span>
         <!-- <span class="helper-text" data-error="Введите текст"></span> -->
         <!-- <textarea class="input input-textarea validate" placeholder="Текст поста" v-model="post.body" required /> -->
@@ -22,7 +22,7 @@
                 <input class="file-path validate" type="text">
             </div>
         </div>
-        <button  type="submit" class="waves-effect waves-light light-blue darken-4 btn" :disabled="v$.$invalid" @click="createPost">Отправить</button>
+        <button type="submit" class="waves-effect waves-light light-blue darken-4 btn" :disabled="v$.$invalid" @click="createPost">Отправить</button>
     </form>
 </div>
 </template>
@@ -58,7 +58,13 @@ export default {
                 body: ""
             }
             this.v$.$reset();
-            
+            this.$forceUpdate(); 
+            const inputs = document.querySelectorAll(".input-text");
+            inputs.forEach(input => {
+                input.classList.remove('valid')
+                
+            });
+          
         }
 
     },
@@ -72,13 +78,6 @@ export default {
             },
         }
     },
-    // computed: {
-    //     nameErrors() {
-    //         const errors = [];
-    //         if (this.$v.post.title.required)
-    //         return 
-    //     }
-    // }
 }
 </script>
 
@@ -115,11 +114,6 @@ export default {
         height: 120px;
     }
 }
-
-//input[type=text].invalid {
-//  border-bottom: 1px solid #000;
-//  box-shadow: 0 1px 0 0 #000;
-// } 
 
 .btn {
     //width: 100px;
@@ -165,8 +159,8 @@ export default {
 }
 
 //.materialize-textarea.invalid {
- //   border: 2px solid #F44336;
- //   box-shadow: 0 1px 0 0 #f44336;
+//   border: 2px solid #F44336;
+//   box-shadow: 0 1px 0 0 #f44336;
 //}
 
 // .file-field input[type=file] {

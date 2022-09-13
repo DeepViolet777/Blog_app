@@ -2,13 +2,13 @@
 <div class="app light-blue lighten-5">
     <post-form @create="createPost" />
     <post-list :posts="posts" @delete="deletePost" />
-
 </div>
 </template>
 
 <script>
 import PostForm from "@/components/PostForm";
 import PostList from "@/components/PostList";
+import axios from 'axios/dist/axios.min';
 
 export default {
     components: {
@@ -18,27 +18,7 @@ export default {
 
     data() {
         return {
-            posts: [{
-                    id: 1,
-                    title: "Заголовок 1",
-                    body: "Текст 1"
-                },
-                {
-                    id: 2,
-                    title: "Заголовок 2",
-                    body: "Текст 2"
-                },
-                {
-                    id: 3,
-                    title: "Заголовок 3",
-                    body: "Текст 3"
-                },
-                {
-                    id: 4,
-                    title: "Заголовок 4",
-                    body: "Текст 4"
-                },
-            ],
+            posts: [],
 
         }
     },
@@ -48,8 +28,20 @@ export default {
         },
         deletePost(post) {
             this.posts = this.posts.filter(p => p.id !== post.id);
+        },
+        async getPosts() {
+            try {
+                const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
+                this.posts = response.data;
+                console.log(response)
+            } catch (error) {
+                console.log(error)
+            }
+        }      
+    },
+    mounted() {
+            this.getPosts();
         }
-    }
 }
 </script>
 
@@ -76,8 +68,6 @@ body {
     width: 100%;
     min-height: 100vh;
 
-    @media screen and (max-width: 575px) {
-
-    }
+    @media screen and (max-width: 575px) {}
 }
 </style>
