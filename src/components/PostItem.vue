@@ -2,9 +2,9 @@
 <div>
     <div class="post">
         <div class="post-content">
-            <h4 class="post-title">
+            <h5 class="post-title">
                 {{post.title}}
-            </h4>
+            </h5>
             <p class="post-body">
                 {{post.body}}
             </p>
@@ -38,15 +38,22 @@ export default {
     border: 2px solid #01579b; //#096683; 
     border-radius: 5px;
     width: 600px;
-   // height: 10%;
+    min-height: 150px;
     margin: 20px auto;
     background-color: #fff;
     display: flex;
-    align-items: center;
+    //align-items: center;
     justify-content: space-between;
+    
 
     &-body {
         margin-top: 15px;
+    }
+
+    h5{
+        display: block;
+        width: 100%;
+        height: auto;
     }
 
     @media screen and (max-width: 1199px) {

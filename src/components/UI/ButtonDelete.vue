@@ -18,5 +18,6 @@ export default {
     background-color: transparent;
     //  color: red; 
     cursor: pointer;
+    
 }
 </style>
