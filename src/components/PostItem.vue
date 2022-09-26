@@ -8,19 +8,24 @@
             <p class="post-body">
                 {{post.body}}
             </p>
+            <div class="img_wrapper">
+                {{post.img}}
+            </div>
         </div>
         <div class="post-btns">
-            <button-delete @click="$emit('delete', post)"/>
+            <button-delete @click="$emit('delete', post)" />
         </div>
     </div>
 </div>
 </template>
 
 <script>
-import  ButtonDelete from "@/components/UI/ButtonDelete";
+import ButtonDelete from "@/components/UI/ButtonDelete";
 
 export default {
-    components: {ButtonDelete},
+    components: {
+        ButtonDelete
+    },
     props: {
         post: {
             type: Object,
@@ -44,13 +49,12 @@ export default {
     display: flex;
     //align-items: center;
     justify-content: space-between;
-    
 
     &-body {
         margin-top: 15px;
     }
 
-    h5{
+    h5 {
         display: block;
         width: 100%;
         height: auto;

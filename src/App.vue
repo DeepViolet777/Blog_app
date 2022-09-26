@@ -33,7 +33,6 @@ export default {
             try {
                 const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
                 this.posts = response.data;
-                console.log(response)
             } catch (error) {
                 console.log(error)
             }
@@ -69,4 +68,17 @@ body {
     min-height: 100vh;
 
 }
+.btn {
+    align-self: flex-end;
+    margin-top: 15px;
+    background-color: #01579b; //#096683; // #0597c4;
+    //  border: 2px solid #096683;
+    border-radius: 2px;
+    border: none;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+  
+    }
+
 </style>

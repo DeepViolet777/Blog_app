@@ -12,16 +12,8 @@
         <!-- <span class="helper-text" data-error="Введите текст"></span> -->
         <!-- <textarea class="input input-textarea validate" placeholder="Текст поста" v-model="post.body" required /> -->
         <!-- <input type="file" name="" id="" @change="checkFile($event)" > -->
-        <div class="file-field input-field">
-            <div class="btn btn-file">
-                <i class="material-icons">attach_file</i>
-                <span>Загрузить фото</span>
-                <input type="file">
-            </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-            </div>
-        </div>
+       
+        <img-loader/>
         <button type="submit" class="waves-effect waves-light light-blue darken-4 btn" :disabled="v$.$invalid" @click="createPost">Отправить</button>
     </form>
 </div>
@@ -29,11 +21,11 @@
 
 <script>
 import useVuelidate from '@vuelidate/core'
-import {
-    required
-} from '@vuelidate/validators';
+import {required} from '@vuelidate/validators'
+import ImgLoader from '@/components/UI/ImgLoader.vue'
+
 export default {
-    //   mixins: [validationMixin],
+  components: { ImgLoader },
     setup() {
         return {
             v$: useVuelidate()
@@ -44,6 +36,7 @@ export default {
             post: {
                 title: "",
                 body: "",
+               
             }
 
         }
@@ -55,17 +48,18 @@ export default {
             this.$emit('create', this.post);
             this.post = {
                 title: "",
-                body: ""
+                body: "",
+                
             }
             this.v$.$reset();
-            this.$forceUpdate(); 
+            // this.$forceUpdate(); 
             const inputs = document.querySelectorAll(".input-text");
             inputs.forEach(input => {
-                input.classList.remove('valid')
-                
+                input.classList.remove('valid');
             });
-          
-        }
+
+        },
+       
 
     },
     validations: {
@@ -115,57 +109,6 @@ export default {
     }
 }
 
-.btn {
-    //width: 100px;
-    // padding: 10px 15px;
-    align-self: flex-end;
-    margin-top: 15px;
-    background-color: #01579b; //#096683; // #0597c4;
-    //  border: 2px solid #096683;
-    border-radius: 2px;
-    border: none;
-    font-weight: 500;
-    color: #fff;
-    cursor: pointer;
-    //transition: .2s;
 
-    //   &:hover {
-    //      background-color: #0277bd;//#0b799b;
-    //    }
 
-    //   &:active {
-    //       background-color: #039be5;//#0e96c0;
-    //    }
-
-    &-file {
-        display: flex;
-        justify-content: space-between;
-        font-size: 11px;
-        line-height: 3rem;
-        font-weight: 600;
-        vertical-align: middle;
-        padding-left: 5px;
-        padding-right: 10px;
-
-        i {
-            margin-right: 4px;
-        }
-
-    }
-}
-
-.file-field .btn {
-    height: 3rem;
-}
-
-//.materialize-textarea.invalid {
-//   border: 2px solid #F44336;
-//   box-shadow: 0 1px 0 0 #f44336;
-//}
-
-// .file-field input[type=file] {
-//   font-size: 12px;
-// font-weight: 500;
-//   height: 2rem;
-//}
 </style>
