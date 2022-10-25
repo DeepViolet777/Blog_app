@@ -2,6 +2,7 @@
 <div class="app light-blue lighten-5">
     <post-form @create="createPost" />
     <post-list :posts="posts" @delete="deletePost" />
+    <v-pagination v-model="page" :pages="10" :range-size="1" active-color="#DCEDFF" @update:modelValue="updateHandler" />
 </div>
 </template>
 
@@ -13,34 +14,59 @@ import axios from 'axios/dist/axios.min';
 export default {
     components: {
         PostForm,
-        PostList
+        PostList,
+
     },
 
     data() {
         return {
             posts: [],
-
+            page: 10
         }
     },
     methods: {
         createPost(post) {
             this.posts.unshift(post);
+            this.setLocalPosts();
         },
         deletePost(post) {
             this.posts = this.posts.filter(p => p.id !== post.id);
+            this.setLocalPosts();
         },
         async getPosts() {
             try {
-                const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
+                const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
                 this.posts = response.data;
             } catch (error) {
                 console.log(error)
             }
-        }      
-    },
-    mounted() {
-            this.getPosts();
+            
+            this.setLocalPosts();
+        },
+
+        setLocalPosts() {
+            localStorage.setItem('posts', JSON.stringify(this.posts));
+        },
+
+        getLocalPosts(){
+            this.posts = JSON.parse(localStorage.getItem('posts'));
         }
+
+    },
+
+    mounted() {
+        if (localStorage.getItem('posts')!= undefined){
+            this.getLocalPosts();
+             } else{
+                this.getPosts();  
+             }
+            
+    },
+    // watch: {
+    //     posts(newPost) {
+    //         localStorage.posts = newPost;
+    //     }
+    // }
 }
 </script>
 
@@ -68,6 +94,7 @@ body {
     min-height: 100vh;
 
 }
+
 .btn {
     align-self: flex-end;
     margin-top: 15px;
@@ -78,7 +105,6 @@ body {
     font-weight: 500;
     color: #fff;
     cursor: pointer;
-  
-    }
 
+}
 </style>
