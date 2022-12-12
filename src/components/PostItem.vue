@@ -40,14 +40,13 @@ export default {
     text-align: left;
     display: block;
     padding: 15px;
-    border: 2px solid #01579b; //#096683; 
+    border: 2px solid #01579b; 
     border-radius: 5px;
     width: 600px;
     min-height: 150px;
     margin: 20px auto;
     background-color: #fff;
     display: flex;
-    //align-items: center;
     justify-content: space-between;
 
     &-body {

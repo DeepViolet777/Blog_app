@@ -3,17 +3,10 @@
     <form class="form" @submit.prevent>
         <h4>Создать пост</h4>
         <input type="text" class="input input-text validate" required placeholder="Заголовок" v-model="post.title" @blur="v$.post.title.$touch" />
-        <!-- :class="{invalid:($v.post.title.$dirty && !$v.post.title.required)}"/> -->
-        <!-- @blur="v$.post.title.$touch" -->
         <span v-if="v$.post.title.$error" style="color:red">Введите текст</span>
-        <!-- <span class="helper-text" data-error="Введите текст"></span> -->
         <input type="text" class="input input-text materialize-textarea validate" required placeholder="Текст поста" v-model="post.body" @blur="v$.post.body.$touch" />
         <span v-if="v$.post.body.$error" style="color:red">Введите текст</span>
-        <!-- <span class="helper-text" data-error="Введите текст"></span> -->
-        <!-- <textarea class="input input-textarea validate" placeholder="Текст поста" v-model="post.body" required /> -->
-        <!-- <input type="file" name="" id="" @change="checkFile($event)" > -->
-       
-        <img-loader/>
+        <img-loader />
         <button type="submit" class="waves-effect waves-light light-blue darken-4 btn" :disabled="v$.$invalid" @click="createPost">Отправить</button>
     </form>
 </div>
@@ -21,11 +14,15 @@
 
 <script>
 import useVuelidate from '@vuelidate/core'
-import {required} from '@vuelidate/validators'
+import {
+    required
+} from '@vuelidate/validators'
 import ImgLoader from '@/components/UI/ImgLoader.vue'
 
 export default {
-  components: { ImgLoader },
+    components: {
+        ImgLoader
+    },
     setup() {
         return {
             v$: useVuelidate()
@@ -36,7 +33,7 @@ export default {
             post: {
                 title: "",
                 body: "",
-               
+
             }
 
         }
@@ -59,7 +56,6 @@ export default {
             });
 
         },
-       
 
     },
     validations: {
@@ -108,7 +104,4 @@ export default {
         height: 120px;
     }
 }
-
-
-
 </style>

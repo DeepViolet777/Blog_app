@@ -62,11 +62,7 @@ export default {
              }
             
     },
-    // watch: {
-    //     posts(newPost) {
-    //         localStorage.posts = newPost;
-    //     }
-    // }
+
 }
 </script>
 
