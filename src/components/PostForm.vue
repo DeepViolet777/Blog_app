@@ -6,7 +6,7 @@
         <span v-if="v$.post.title.$error" style="color:red">Введите текст</span>
         <input type="text" class="input input-text materialize-textarea validate" required placeholder="Текст поста" v-model="post.body" @blur="v$.post.body.$touch" />
         <span v-if="v$.post.body.$error" style="color:red">Введите текст</span>
-        <img-loader />
+        <img-loader @uploadImg="onUploadImg" :value="post.img" />
         <button type="submit" class="waves-effect waves-light light-blue darken-4 btn" :disabled="v$.$invalid" @click="createPost">Отправить</button>
     </form>
 </div>
@@ -33,7 +33,7 @@ export default {
             post: {
                 title: "",
                 body: "",
-
+        
             }
 
         }
@@ -46,18 +46,21 @@ export default {
             this.post = {
                 title: "",
                 body: "",
-                
+                img: null,
             }
             this.v$.$reset();
-            // this.$forceUpdate(); 
             const inputs = document.querySelectorAll(".input-text");
             inputs.forEach(input => {
                 input.classList.remove('valid');
             });
-
         },
 
+        onUploadImg(imgData) {
+        this.post.img = imgData;
+      },
+
     },
+    
     validations: {
         post: {
             title: {

@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${previewImage})` }" @click="selectImage">
+    <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${value})` }" @click="selectImage">
     </div>
 
     <div class="file-field input-field">
@@ -20,11 +20,12 @@
 <script>
 export default {
     name: "img-loader",
-    data() {
-        return {
-            previewImage: null
-        };
-    },
+    // data() {
+    //     return {
+    //         previewImage: null
+    //     };
+    // },
+    props: ['value'],
     methods: {
         selectImage() {
             this.$refs.fileInput.click()
@@ -35,10 +36,11 @@ export default {
             if (file && file[0]) {
                 let reader = new FileReader
                 reader.onload = e => {
-                    this.previewImage = e.target.result
+                    console.log(this.value);
+                    this.$emit('uploadImg', e.target.result)
                 }
                 reader.readAsDataURL(file[0])
-                this.$emit('input', file[0])
+                // this.$emit('input', file[0])
             }
         }
     }

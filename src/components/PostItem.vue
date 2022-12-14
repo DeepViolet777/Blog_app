@@ -8,8 +8,8 @@
             <p class="post-body">
                 {{post.body}}
             </p>
-            <div class="img_wrapper">
-                {{post.img}}
+            <div class="img_wrapper" v-if="post.img">
+                <img :src="post.img" class="post-img">
             </div>
         </div>
         <div class="post-btns">
@@ -58,6 +58,11 @@ export default {
         width: 100%;
         height: auto;
     }
+
+    &-img {
+        max-width: 100%;
+      }
+    
 
     @media screen and (max-width: 1199px) {
         width: 600px;
